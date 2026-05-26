@@ -1,0 +1,52 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-56282e26f9787240d37c4f8a63d744228b64e8ec",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "compilerType": "solc",
+  "toolVersions": {
+    "hardhat": "3.5.1"
+  },
+  "userSourceNameMap": {
+    "contracts/RoleManager.sol": "project/contracts/RoleManager.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode.linkReferences",
+            "evm.bytecode.object",
+            "evm.bytecode.opcodes",
+            "evm.bytecode.sourceMap",
+            "evm.deployedBytecode.immutableReferences",
+            "evm.deployedBytecode.linkReferences",
+            "evm.deployedBytecode.object",
+            "evm.deployedBytecode.opcodes",
+            "evm.deployedBytecode.sourceMap",
+            "evm.methodIdentifiers"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/OrganizationRegistry.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.20;\n\n/**\n * @title OrganizationRegistry\n * @notice Maintains the list of healthcare organizations authorized to participate\n *         in the consortium. Only the admin can register or deactivate organizations.\n */\ncontract OrganizationRegistry {\n    address public admin;\n\n    struct Organization {\n        string name;        // e.g. \"Astana City Hospital\"\n        bool active;        // can be deactivated without losing history\n        uint256 registeredAt;\n    }\n\n    // organization address => details\n    mapping(address => Organization) public organizations;\n\n    event OrganizationRegistered(address indexed org, string name, uint256 timestamp);\n    event OrganizationDeactivated(address indexed org, uint256 timestamp);\n\n    modifier onlyAdmin() {\n        require(msg.sender == admin, \"Only admin\");\n        _;\n    }\n\n    constructor() {\n        admin = msg.sender;\n    }\n\n    /**\n     * @notice Register a new healthcare organization.\n     * @param org The blockchain address representing the organization.\n     * @param name Human-readable name of the organization.\n     */\n    function registerOrganization(address org, string calldata name) external onlyAdmin {\n        require(org != address(0), \"Invalid address\");\n        require(!organizations[org].active, \"Already registered\");\n        require(bytes(name).length > 0, \"Name required\");\n\n        organizations[org] = Organization({\n            name: name,\n            active: true,\n            registeredAt: block.timestamp\n        });\n\n        emit OrganizationRegistered(org, name, block.timestamp);\n    }\n\n    /**\n     * @notice Deactivate an organization (e.g. license revoked, breach).\n     */\n    function deactivateOrganization(address org) external onlyAdmin {\n        require(organizations[org].active, \"Not active\");\n\n        organizations[org].active = false;\n\n        emit OrganizationDeactivated(org, block.timestamp);\n    }\n\n    /**\n     * @notice Quick check used by other contracts to validate org membership.\n     */\n    function isActive(address org) external view returns (bool) {\n        return organizations[org].active;\n    }\n}"
+      },
+      "project/contracts/RoleManager.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.20;\n\nimport \"./OrganizationRegistry.sol\";\n\n/**\n * @title RoleManager\n * @notice Tracks staff role assignments scoped to a specific organization.\n *         A staff member's role only has meaning within their organization —\n *         being a \"doctor\" at Hospital A does NOT grant rights at Hospital B.\n */\ncontract RoleManager {\n    // Roles are stored as bytes32 hashes for gas efficiency.\n    // Use keccak256(\"DOCTOR\"), keccak256(\"NURSE\"), keccak256(\"AUDITOR\"), etc.\n\n    OrganizationRegistry public immutable orgRegistry;\n\n    // organization => staff address => role hash\n    mapping(address => mapping(address => bytes32)) public roles;\n\n    event RoleAssigned(\n        address indexed organization,\n        address indexed staff,\n        bytes32 indexed role,\n        uint256 timestamp\n    );\n\n    event RoleRevoked(\n        address indexed organization,\n        address indexed staff,\n        uint256 timestamp\n    );\n\n    constructor(address registryAddress) {\n        orgRegistry = OrganizationRegistry(registryAddress);\n    }\n\n    /**\n     * @notice Assign a role to a staff member. Only the organization itself\n     *         can call this for its own staff (msg.sender == organization).\n     */\n    function assignRole(address staff, bytes32 role) external {\n        require(orgRegistry.isActive(msg.sender), \"Org not active\");\n        require(staff != address(0), \"Invalid staff address\");\n        require(role != bytes32(0), \"Invalid role\");\n\n        roles[msg.sender][staff] = role;\n\n        emit RoleAssigned(msg.sender, staff, role, block.timestamp);\n    }\n\n    /**\n     * @notice Revoke a staff member's role.\n     */\n    function revokeRole(address staff) external {\n        require(orgRegistry.isActive(msg.sender), \"Org not active\");\n        require(roles[msg.sender][staff] != bytes32(0), \"No role assigned\");\n\n        delete roles[msg.sender][staff];\n\n        emit RoleRevoked(msg.sender, staff, block.timestamp);\n    }\n\n    /**\n     * @notice Check whether a staff member holds a given role at an organization.\n     */\n    function hasRole(\n        address organization,\n        address staff,\n        bytes32 role\n    ) external view returns (bool) {\n        return roles[organization][staff] == role;\n    }\n\n    /**\n     * @notice Get a staff member's current role at an organization (0 if none).\n     */\n    function getRole(address organization, address staff) external view returns (bytes32) {\n        return roles[organization][staff];\n    }\n}"
+      }
+    }
+  }
+}

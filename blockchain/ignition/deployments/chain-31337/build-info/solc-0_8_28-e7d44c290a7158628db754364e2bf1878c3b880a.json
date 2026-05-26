@@ -1,0 +1,49 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-e7d44c290a7158628db754364e2bf1878c3b880a",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "compilerType": "solc",
+  "toolVersions": {
+    "hardhat": "3.5.1"
+  },
+  "userSourceNameMap": {
+    "contracts/OrganizationRegistry.sol": "project/contracts/OrganizationRegistry.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode.linkReferences",
+            "evm.bytecode.object",
+            "evm.bytecode.opcodes",
+            "evm.bytecode.sourceMap",
+            "evm.deployedBytecode.immutableReferences",
+            "evm.deployedBytecode.linkReferences",
+            "evm.deployedBytecode.object",
+            "evm.deployedBytecode.opcodes",
+            "evm.deployedBytecode.sourceMap",
+            "evm.methodIdentifiers"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/OrganizationRegistry.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.20;\n\n/**\n * @title OrganizationRegistry\n * @notice Maintains the list of healthcare organizations authorized to participate\n *         in the consortium. Only the admin can register or deactivate organizations.\n */\ncontract OrganizationRegistry {\n    address public admin;\n\n    struct Organization {\n        string name;        // e.g. \"Astana City Hospital\"\n        bool active;        // can be deactivated without losing history\n        uint256 registeredAt;\n    }\n\n    // organization address => details\n    mapping(address => Organization) public organizations;\n\n    event OrganizationRegistered(address indexed org, string name, uint256 timestamp);\n    event OrganizationDeactivated(address indexed org, uint256 timestamp);\n\n    modifier onlyAdmin() {\n        require(msg.sender == admin, \"Only admin\");\n        _;\n    }\n\n    constructor() {\n        admin = msg.sender;\n    }\n\n    /**\n     * @notice Register a new healthcare organization.\n     * @param org The blockchain address representing the organization.\n     * @param name Human-readable name of the organization.\n     */\n    function registerOrganization(address org, string calldata name) external onlyAdmin {\n        require(org != address(0), \"Invalid address\");\n        require(!organizations[org].active, \"Already registered\");\n        require(bytes(name).length > 0, \"Name required\");\n\n        organizations[org] = Organization({\n            name: name,\n            active: true,\n            registeredAt: block.timestamp\n        });\n\n        emit OrganizationRegistered(org, name, block.timestamp);\n    }\n\n    /**\n     * @notice Deactivate an organization (e.g. license revoked, breach).\n     */\n    function deactivateOrganization(address org) external onlyAdmin {\n        require(organizations[org].active, \"Not active\");\n\n        organizations[org].active = false;\n\n        emit OrganizationDeactivated(org, block.timestamp);\n    }\n\n    /**\n     * @notice Quick check used by other contracts to validate org membership.\n     */\n    function isActive(address org) external view returns (bool) {\n        return organizations[org].active;\n    }\n}"
+      }
+    }
+  }
+}
