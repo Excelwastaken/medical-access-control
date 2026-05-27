@@ -4,6 +4,7 @@ import orgRoutes from "./routes/organizations.js";
 import roleRoutes from "./routes/roles.js";
 import consentRoutes from "./routes/consent.js";
 import accessRoutes from "./routes/access.js";
+import auditRoutes from "./routes/audit.js";
 
 const app = express();
 app.use(express.json());
@@ -37,6 +38,7 @@ app.use("/api/orgs", orgRoutes);
 app.use("/api/roles", roleRoutes);
 app.use("/api/consent", consentRoutes);
 app.use("/api/access", accessRoutes);
+app.use("/api/audit", auditRoutes);
 app.listen(PORT, () => {
   console.log(`🏥 Medical Access Control gateway listening on http://localhost:${PORT}`);
 });
