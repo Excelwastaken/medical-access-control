@@ -1,0 +1,86 @@
+{
+  "startedAt": "2026-05-27T06:52:57.084Z",
+  "S1": {
+    "scenario": "S1",
+    "expected": "granted + record returned",
+    "observed": "ok",
+    "latencyMs": 74.8247090000001,
+    "pass": {
+      "id": "record-001",
+      "resourceType": "Observation",
+      "patientAddress": "0x90F79bf6EB2c4f870365E785982E1f101E93b906",
+      "payload": {
+        "code": "blood-pressure",
+        "status": "final",
+        "category": "vital-signs",
+        "performer": "Dr. M. Kassenov",
+        "resourceType": "Observation",
+        "valueQuantity": {
+          "unit": "mmHg",
+          "systolic": 128,
+          "diastolic": 82
+        },
+        "effectiveDateTime": "2025-11-15T08:30:00Z"
+      }
+    }
+  },
+  "S2": {
+    "scenario": "S2",
+    "expected": "denied (invalid consent)",
+    "observed": "The contract function \"authorizeAccess\" reverted with the following reason:\nInvalid signature",
+    "latencyMs": 16.52820900000006,
+    "pass": true
+  },
+  "S3": {
+    "scenario": "S3",
+    "expected": "denied (invalid role)",
+    "observed": "The contract function \"authorizeAccess\" reverted with the following reason:\nStaff lacks required role",
+    "latencyMs": 12.539667000000009,
+    "pass": true
+  },
+  "S4_low": {
+    "label": "Low load",
+    "samples": 10,
+    "averageMs": 9.79,
+    "p50Ms": 9.17,
+    "p95Ms": 12.93,
+    "maxMs": 12.93,
+    "minMs": 8.37,
+    "throughputTps": 101.23,
+    "errors": 0
+  },
+  "S4_med": {
+    "label": "Medium load",
+    "samples": 25,
+    "averageMs": 8.21,
+    "p50Ms": 7.81,
+    "p95Ms": 10.16,
+    "maxMs": 12.41,
+    "minMs": 7.06,
+    "throughputTps": 120.86,
+    "errors": 0
+  },
+  "S4_high": {
+    "label": "High load",
+    "samples": 50,
+    "averageMs": 8.35,
+    "p50Ms": 7.12,
+    "p95Ms": 12.25,
+    "maxMs": 53.27,
+    "minMs": 6.2,
+    "throughputTps": 118.86,
+    "errors": 0
+  },
+  "S5": {
+    "scenario": "S5",
+    "recordedEvents": 89,
+    "expectedMinimum": 86,
+    "pass": true
+  },
+  "aggregateMetrics": {
+    "authorizationSuccessRate": 1,
+    "denialCorrectnessRate": 1,
+    "auditCompleteness": 1
+  },
+  "finishedAt": "2026-05-27T06:52:58.054Z"
+}
