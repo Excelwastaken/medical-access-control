@@ -1,0 +1,15 @@
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Node / build
+node_modules/
+**/node_modules/
+dist/
+artifacts/
+cache/
+
+# Secrets
+.env
+.env.*
