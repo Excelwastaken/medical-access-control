@@ -1,0 +1,356 @@
+{
+  "allRuns": [
+    {
+      "run": 1,
+      "S1_pass": true,
+      "S2_pass": true,
+      "S3_pass": true,
+      "S4_low": {
+        "mean": 10.83,
+        "std": 2.09,
+        "min": 8.47,
+        "max": 14.3,
+        "tps": 91.49,
+        "n": 10
+      },
+      "S4_med": {
+        "mean": 8.7,
+        "std": 1.97,
+        "min": 7.04,
+        "max": 17.6,
+        "tps": 114.15,
+        "n": 25
+      },
+      "S4_high": {
+        "mean": 7.54,
+        "std": 0.76,
+        "min": 6.11,
+        "max": 10.76,
+        "tps": 131.7,
+        "n": 50
+      },
+      "S5_totalEventsOnChain": 87
+    },
+    {
+      "run": 2,
+      "S1_pass": true,
+      "S2_pass": true,
+      "S3_pass": true,
+      "S4_low": {
+        "mean": 7.31,
+        "std": 0.55,
+        "min": 6.64,
+        "max": 8.56,
+        "tps": 135.89,
+        "n": 10
+      },
+      "S4_med": {
+        "mean": 7.1,
+        "std": 0.85,
+        "min": 6.47,
+        "max": 10.7,
+        "tps": 139.87,
+        "n": 25
+      },
+      "S4_high": {
+        "mean": 6.72,
+        "std": 0.46,
+        "min": 6.03,
+        "max": 8.42,
+        "tps": 147.75,
+        "n": 50
+      },
+      "S5_totalEventsOnChain": 173
+    },
+    {
+      "run": 3,
+      "S1_pass": true,
+      "S2_pass": true,
+      "S3_pass": true,
+      "S4_low": {
+        "mean": 6.82,
+        "std": 0.5,
+        "min": 6.24,
+        "max": 8.13,
+        "tps": 145.87,
+        "n": 10
+      },
+      "S4_med": {
+        "mean": 6.8,
+        "std": 0.52,
+        "min": 6.28,
+        "max": 8.07,
+        "tps": 146.15,
+        "n": 25
+      },
+      "S4_high": {
+        "mean": 7.13,
+        "std": 1.17,
+        "min": 5.67,
+        "max": 10.95,
+        "tps": 139.15,
+        "n": 50
+      },
+      "S5_totalEventsOnChain": 259
+    },
+    {
+      "run": 4,
+      "S1_pass": true,
+      "S2_pass": true,
+      "S3_pass": true,
+      "S4_low": {
+        "mean": 7.47,
+        "std": 1.08,
+        "min": 6.53,
+        "max": 9.21,
+        "tps": 133.25,
+        "n": 10
+      },
+      "S4_med": {
+        "mean": 8.1,
+        "std": 3.14,
+        "min": 5.69,
+        "max": 18.91,
+        "tps": 121.63,
+        "n": 25
+      },
+      "S4_high": {
+        "mean": 6.89,
+        "std": 0.83,
+        "min": 5.57,
+        "max": 10.6,
+        "tps": 144.36,
+        "n": 50
+      },
+      "S5_totalEventsOnChain": 345
+    },
+    {
+      "run": 5,
+      "S1_pass": true,
+      "S2_pass": true,
+      "S3_pass": true,
+      "S4_low": {
+        "mean": 7.09,
+        "std": 0.81,
+        "min": 5.89,
+        "max": 8.71,
+        "tps": 140.13,
+        "n": 10
+      },
+      "S4_med": {
+        "mean": 7.03,
+        "std": 0.78,
+        "min": 5.96,
+        "max": 9.63,
+        "tps": 141.34,
+        "n": 25
+      },
+      "S4_high": {
+        "mean": 6.36,
+        "std": 0.51,
+        "min": 5.54,
+        "max": 7.85,
+        "tps": 156.3,
+        "n": 50
+      },
+      "S5_totalEventsOnChain": 431
+    },
+    {
+      "run": 6,
+      "S1_pass": true,
+      "S2_pass": true,
+      "S3_pass": true,
+      "S4_low": {
+        "mean": 6.52,
+        "std": 0.43,
+        "min": 6.14,
+        "max": 7.53,
+        "tps": 152.3,
+        "n": 10
+      },
+      "S4_med": {
+        "mean": 6.55,
+        "std": 0.7,
+        "min": 5.52,
+        "max": 8.72,
+        "tps": 151.85,
+        "n": 25
+      },
+      "S4_high": {
+        "mean": 6.24,
+        "std": 0.57,
+        "min": 5.31,
+        "max": 8.14,
+        "tps": 159.14,
+        "n": 50
+      },
+      "S5_totalEventsOnChain": 517
+    },
+    {
+      "run": 7,
+      "S1_pass": true,
+      "S2_pass": true,
+      "S3_pass": true,
+      "S4_low": {
+        "mean": 6.01,
+        "std": 0.5,
+        "min": 5.45,
+        "max": 7.27,
+        "tps": 165.41,
+        "n": 10
+      },
+      "S4_med": {
+        "mean": 6.63,
+        "std": 0.63,
+        "min": 5.71,
+        "max": 8.87,
+        "tps": 150.03,
+        "n": 25
+      },
+      "S4_high": {
+        "mean": 6.46,
+        "std": 0.7,
+        "min": 5.28,
+        "max": 9.15,
+        "tps": 154.08,
+        "n": 50
+      },
+      "S5_totalEventsOnChain": 603
+    },
+    {
+      "run": 8,
+      "S1_pass": true,
+      "S2_pass": true,
+      "S3_pass": true,
+      "S4_low": {
+        "mean": 9.09,
+        "std": 6.66,
+        "min": 6.07,
+        "max": 28.94,
+        "tps": 109.5,
+        "n": 10
+      },
+      "S4_med": {
+        "mean": 6.26,
+        "std": 0.3,
+        "min": 5.98,
+        "max": 7.47,
+        "tps": 158.88,
+        "n": 25
+      },
+      "S4_high": {
+        "mean": 6.28,
+        "std": 0.89,
+        "min": 5.37,
+        "max": 9.91,
+        "tps": 158.5,
+        "n": 50
+      },
+      "S5_totalEventsOnChain": 689
+    },
+    {
+      "run": 9,
+      "S1_pass": true,
+      "S2_pass": true,
+      "S3_pass": true,
+      "S4_low": {
+        "mean": 6.26,
+        "std": 0.35,
+        "min": 5.73,
+        "max": 6.96,
+        "tps": 158.92,
+        "n": 10
+      },
+      "S4_med": {
+        "mean": 6.39,
+        "std": 0.57,
+        "min": 5.56,
+        "max": 8.51,
+        "tps": 155.75,
+        "n": 25
+      },
+      "S4_high": {
+        "mean": 6.39,
+        "std": 0.66,
+        "min": 5.48,
+        "max": 8.51,
+        "tps": 155.71,
+        "n": 50
+      },
+      "S5_totalEventsOnChain": 775
+    },
+    {
+      "run": 10,
+      "S1_pass": true,
+      "S2_pass": true,
+      "S3_pass": true,
+      "S4_low": {
+        "mean": 6.22,
+        "std": 0.5,
+        "min": 5.53,
+        "max": 7.14,
+        "tps": 159.85,
+        "n": 10
+      },
+      "S4_med": {
+        "mean": 6.26,
+        "std": 0.54,
+        "min": 5.59,
+        "max": 7.82,
+        "tps": 158.92,
+        "n": 25
+      },
+      "S4_high": {
+        "mean": 6.57,
+        "std": 1.52,
+        "min": 5.28,
+        "max": 15.05,
+        "tps": 151.27,
+        "n": 50
+      },
+      "S5_totalEventsOnChain": 861
+    }
+  ],
+  "summary": {
+    "repetitions": 10,
+    "ASR": 1,
+    "DCR_forgedSignature": 1,
+    "DCR_invalidRole": 1,
+    "latency_low_ms": {
+      "mean": 7.36,
+      "std": 1.43,
+      "min": 6.01,
+      "max": 10.83
+    },
+    "latency_med_ms": {
+      "mean": 6.98,
+      "std": 0.77,
+      "min": 6.26,
+      "max": 8.7
+    },
+    "latency_high_ms": {
+      "mean": 6.66,
+      "std": 0.4,
+      "min": 6.24,
+      "max": 7.54
+    },
+    "tps_low": {
+      "mean": 139.26,
+      "std": 22.19,
+      "min": 91.49,
+      "max": 165.41
+    },
+    "tps_med": {
+      "mean": 143.86,
+      "std": 14.49,
+      "min": 114.15,
+      "max": 158.92
+    },
+    "tps_high": {
+      "mean": 149.8,
+      "std": 8.58,
+      "min": 131.7,
+      "max": 159.14
+    }
+  }
+}
