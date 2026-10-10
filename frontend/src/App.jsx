@@ -191,6 +191,7 @@ function StaffPanel({ lastConsent }) {
   const [result, setResult] = useState(null);
 
   useEffect(() => {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
     if (lastConsent) setConsentJson(JSON.stringify(lastConsent, null, 2));
   }, [lastConsent]);
 
