@@ -55,3 +55,11 @@ contract compile and tests, backend install, frontend lint and build.
 ## License
 
 MIT
+
+## Assignment 5: research analysis pipeline
+
+The Python component in `analysis/` independently summarizes the repeated evaluation results.
+See [analysis instructions](analysis/README.md) for local and Docker runs, and
+[Jenkins setup](analysis/jenkins/README.md) for the versioned root `Jenkinsfile`.
+The pipeline runs unit tests, builds a Docker image, and archives analysis reports.
+It processes recorded measurements; it does not execute new blockchain experiments.
