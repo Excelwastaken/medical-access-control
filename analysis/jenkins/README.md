@@ -61,3 +61,11 @@ This pipeline covers the Python analysis component; existing blockchain tests re
 The assignment uses branch `assignment/assignment-5-ci`. After configuring Pipeline script from SCM,
 leave `LOCAL_SOURCE=false` and `GIT_BRANCH=assignment/assignment-5-ci`. Polling checks for changes
 every two minutes while Jenkins and Docker Desktop are running. No public webhook endpoint is required.
+
+## Validation record
+
+On October 31, 2026, Jenkins build #2 successfully obtained the Jenkinsfile and project
+from GitHub branch `assignment/assignment-5-ci`. All five Python tests passed, the Docker
+image built, and the analysis reports were archived. The archived `source.txt` records the
+exact Git commit. Use the build page and console output as evidence; a successful analysis
+of historical results does not establish new blockchain performance measurements.
